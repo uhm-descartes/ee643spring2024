@@ -1,6 +1,6 @@
 ---
 title: "Open Source Software"
-published: true
+published: false
 morea_coming_soon: false
 morea_id: example-open-source-software
 morea_outcomes:

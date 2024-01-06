@@ -1,6 +1,6 @@
 ---
 title: "Ethics in Software Engineering"
-published: true
+published: false
 morea_coming_soon: false
 morea_id: ethics
 morea_outcomes:

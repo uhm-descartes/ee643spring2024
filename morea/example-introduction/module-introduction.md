@@ -1,6 +1,6 @@
 ---
 title: "Introduction to ICS 199"
-published: true
+published: false
 morea_coming_soon: false
 morea_id: example-introduction
 morea_outcomes:
