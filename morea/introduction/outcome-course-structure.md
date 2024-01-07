@@ -1,10 +1,10 @@
 ---
-title: "Understand how to succeed in ICS 199"
+title: "Understand how to succeed in EE 643"
 published: true
 morea_id: outcome-course-structure
 morea_type: outcome
 morea_sort_order: 1
 ---
 
+  * You get familiar with the Moreal framework, which enables moduled-based learning.
   * You understand the goals, structures, and procedures for learning in EE 643.
-  * Your computer and its software is adequate to support the experiences you will have in this course.
