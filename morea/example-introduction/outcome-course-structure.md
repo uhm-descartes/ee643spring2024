@@ -1,7 +1,7 @@
 ---
 title: "Understand how to succeed in ICS 199"
 published: true
-morea_id: outcome-course-structure
+morea_id: example-outcome-course-structure
 morea_type: outcome
 morea_sort_order: 1
 ---

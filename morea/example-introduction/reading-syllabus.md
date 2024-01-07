@@ -1,5 +1,5 @@
 ---
-morea_id: reading-syllabus
+morea_id: example-reading-syllabus
 morea_type: reading
 title: "ICS 199 Syllabus"
 published: True
