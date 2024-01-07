@@ -2,8 +2,8 @@
 # See https://morea-framework.github.io/docs/instructors/config-yml
 
 # SITE SPECIFIC: The following fields are typically changed for each site
-name: EE 643 Fall 2024
-baseurl: /ee643fall2024
+name: EE 643 Spring 2024
+baseurl: /ee643spring2024
 morea_theme: cerulean
 timezone: Pacific/Honolulu
 morea_navbar_items:

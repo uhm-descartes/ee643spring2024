@@ -5,7 +5,7 @@ morea_type: home
 published: true
 ---
 
-## Welcome to ICS 199, Fall 2021
+## Welcome to EE 643, Spring 2024
 
 <div class="alert alert-danger" role="alert" markdown="1">
 
@@ -27,7 +27,7 @@ This course is intended for undergraduates in computer science or computer engin
 
 ICS 199 is structured as a sequential series of [modules](/modules), each taking approximately a week to complete. Each module has the following structure:
 
-  * [Prerequisites](/prerequisites), describing skills you should have prior to starting the module.
+  # * [Prerequisites](/prerequisites), describing skills you should have prior to starting the module.
   * [Learning outcomes](/outcomes), describing the major goals for the module.
   * [Readings and other online resources](/readings), providing background material.
   * [Experiential learning activities](/experiences), providing a structured set of challenges enabling you to acquire mastery of material.
@@ -35,4 +35,4 @@ ICS 199 is structured as a sequential series of [modules](/modules), each taking
 
 ## About the instructor
 
-[Philip Johnson](https://philipmjohnson.org) is a Professor of Information and Computer Sciences at the University of Hawaii. His research interests include climate change, educational technology, software engineering, and serious games. He is currently an active developer of [RadGrad](https://radgrad.org), an open source software system based on Javascript, Typescript, React, and Meteor.
+[Yuanzhang Xiao](https://yuanzhangxiao.github.io/) is an Assistant Professor in Hawaii Advanced Wireless Technologies Institute at the University of Hawaii. His research interests include reinforcement learning and game theory with applications to wireless communications, smart grids, and socio-technological systems.
