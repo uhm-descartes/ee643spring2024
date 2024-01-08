@@ -25,5 +25,3 @@ By the time and date indicated on the Schedule page, you must have:
 
   * Joined the EE 643 Discord server
   * Performed all setup actions specified in the Welcome category channels.
-
-
