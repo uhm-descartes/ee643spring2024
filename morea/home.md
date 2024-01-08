@@ -15,12 +15,12 @@ This course is intended for advanced undergraduate students and graduate student
 
 ## Pedagogy
 
-EE 643 is structured as a sequential series of [modules](/modules), each taking approximately one to two weeks to complete. Each module has the following structure:
+EE 643 is structured as a sequential series of [modules](/ee643spring2024/modules/), each taking approximately one to two weeks to complete. Each module has the following structure:
 
-  * [Learning outcomes](/outcomes), describing the major goals for the module.
-  * [Readings and other online resources](/readings), providing background material.
-  * [Experiential learning activities](/experiences), providing a structured set of challenges enabling you to acquire mastery of material.
-  * [Assessments](/assessments), which help you determine if you have acquired mastery of the material.
+  * [Learning outcomes](/ee643spring2024/outcomes/), describing the major goals for the module.
+  * [Readings and other online resources](/ee643spring2024/readings/), providing background material.
+  * [Experiential learning activities](/ee643spring2024/experiences/), providing a structured set of challenges enabling you to acquire mastery of material.
+  * [Assessments](/ee643spring2024/assessments/), which help you determine if you have acquired mastery of the material.
 
 ## About the instructor
 
