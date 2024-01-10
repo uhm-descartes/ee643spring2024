@@ -1,6 +1,6 @@
 ---
 title: "Wireless Channel Models"
-published: true
+published: false
 morea_coming_soon: false
 morea_id: module-wireless-channel-model
 morea_prerequisites:
@@ -13,7 +13,7 @@ morea_experiences:
 morea_assessments:
   # - assessment-CHANGE-ME
 morea_type: module
-morea_icon_url: /morea/CHANGE-ME/CHANGE-ME.png
+# morea_icon_url: /morea/03-wireless-channel-model/CHANGE-ME.png
 morea_start_date: "2024-01-10"
 morea_end_date: "2024-01-15"
 morea_labels:
