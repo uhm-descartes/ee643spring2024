@@ -8,7 +8,7 @@ morea_type: reading
 morea_labels:
 ---
 
-## Key Challenges in Wireless Communications
+# Key Challenges in Wireless Communications
 
 There are two key challenges in wireless communications:
 - *Fading*: The wireless channel is very random. A change of weather or a sudden change in the environment (e.g., people moving around) will change the channel condition. This changes happen in milliseconds or less.
@@ -18,7 +18,7 @@ Both challenges are *unique* in wireless communications.
 
 ## How to Deal With Fading?
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks-channel-coding.png" alt="Channel coding in a typical communication system" width="500">
   <figcaption>The channel encoder and decoder are key modules to deal with fading.</figcaption>
 </figure>
@@ -29,7 +29,7 @@ As we will see later, compared to other channel imperfections (e.g., noises), fa
 
 ## How to Deal With Interference
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks-modulation.png" alt="Modulation in a typical communication system" width="500">
   <figcaption>The modulator and demodulator are key modules to deal with multi-user interference.</figcaption>
 </figure>

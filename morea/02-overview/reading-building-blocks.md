@@ -8,22 +8,20 @@ morea_type: reading
 morea_labels:
 ---
 
-## Basic building blocks
+# Basic building blocks
 
-Here is the block diagram of a typical <span style="color: red;">point-to-point</span> communication system.
+Here is the block diagram of a typical <span style="color: red;">point-to-point</span> communication system. The top row are blocks in the transmitter, and the bottom row are blocks in the receiver.
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks.png" alt="Building blocks of a typical communication system" width="500">
-  <figcaption>Building blocks of a typical communication system. The top row are blocks in the transmitter, and the bottom row are in the receiver.</figcaption>
 </figure>
 
 Note that for each block in the transmitter, there is a counterpart in the receiver. Let us divide into each block and discuss their roles.
 
 ## Source Encoder and Source Decoder
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks-source-coding.png" alt="Source coding in a typical communication system" width="500">
-  <figcaption>The source encoder converts the source signal into a binary sequence, and the source decoder reconstructs the source signal.</figcaption>
 </figure>
 
 The source encoder "encodes" the message that the transmitter wishes to send. Here, "encodes" includes, but is not limited to, sampling the continuous-time signal to get a discrete-time signal, quantization, and compression.
@@ -36,9 +34,8 @@ Source coding is an important topic in information theory. But we will not dive 
 
 ## Channel Encoder and Channel Decoder
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks-channel-coding.png" alt="Channel coding in a typical communication system" width="500">
-  <figcaption>The channel encoder adds redundancy to combat the channel errors, and the channel decoder "decodes" the message.</figcaption>
 </figure>
 
 The channel encoder *adds redundancy* to the binary sequence produced by the source encoding. This might seem counterintuitive -- didn't the source encoder just compress the source signal to *reduce* redundancy?
@@ -49,15 +46,18 @@ We will discuss some simple channel coding and decoding schemes in this course.
 
 ## Modulator and Demodulator
 
-<figure>
+<figure style="text-align: center;">
   <img src="02-building-blocks-modulation.png" alt="Modulation in a typical communication system" width="500">
-  <figcaption>The modulator "places" the signal in the correct space, time, and frequency, and the demodulator retrieves the signal.</figcaption>
 </figure>
 
 The radio spectrum is a very scarce resource. [Mobile operators spend tens of billions of dollars to buy a few hundred MHz of spectrum](https://www.spglobal.com/marketintelligence/en/news-insights/latest-news-headlines/big-4-wireless-carriers-spent-100b-on-5g-spectrum-was-it-worth-it-68488095).
-> Verizon, meanwhile, spent $45.45 billion in the C-band spectrum auction in 2021 when the Federal Communications Commission auctioned 280 MHz of spectrum in the 3.7 GHz-3.98 GHz band. AT&T dished out $23.41 billion in the C-band auction and then followed that up by shelling out an additional $9.08 billion in the subsequent 3.45 GHz auction, which ended earlier this month. All told, the carrier spent $32.49 billion on mid-band spectrum across the two auctions. 
->
-> _- S&P Global_
+
+<div class="alert alert-info" role="alert" markdown="1">
+<i class="fa-solid fa-circle-info fa-xl"></i> **Excerpt from an article by S&P Global**
+<hr/>
+
+Verizon, meanwhile, spent $45.45 billion in the C-band spectrum auction in 2021 when the Federal Communications Commission auctioned 280 MHz of spectrum in the 3.7 GHz-3.98 GHz band. AT&T dished out $23.41 billion in the C-band auction and then followed that up by shelling out an additional $9.08 billion in the subsequent 3.45 GHz auction, which ended earlier this month. All told, the carrier spent $32.49 billion on mid-band spectrum across the two auctions.
+</div>
 
 Therefore, the transmitter needs to carefully "modulate" the signal into the correct frequency band, and the receiver needs to "demodulate" (i.e., retrieve) the signal from the correct band.
 

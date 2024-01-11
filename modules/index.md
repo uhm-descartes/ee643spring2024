@@ -16,7 +16,8 @@ title: Modules
         <div class="col-md-6 col-lg-4" style="padding-bottom: 20px">
           <div class="card h-100">
             <div class="text-center">
-              <img alt="{{module.title}}" src="{{ site.baseurl }}{{ module.morea_icon_url }}" class="card-img-top rounded-circle" style="max-width: 100px; padding-top: 2px">
+              <!-- <img alt="{{module.title}}" src="{{ site.baseurl }}{{ module.morea_icon_url }}" class="card-img-top rounded-circle" style="max-width: 100px; padding-top: 2px"> -->
+              <img alt="{{module.title}}" src="{{ site.baseurl }}{{ module.morea_icon_url }}" class="card-img-top rounded-circle" style="height: 100px; width: auto; padding-top: 10px">
             </div>
             <div class="card-body">
               <h3 class="card-title">{{ forloop.index }}. {{ module.title }}</h3>

@@ -1,5 +1,5 @@
 ---
-title: "Overview -- Wireless vs Wired Communications"
+title: "Overview - Wireless vs Wired Communications"
 published: true
 morea_coming_soon: false
 morea_id: module-overview

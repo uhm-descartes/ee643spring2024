@@ -1,6 +1,6 @@
 # Morea Template
 
-This repository contains a template Morea course site.
+This repository is the course site of EE 643 Communication System Performance, built from the Morea framework.
 
 For documentation on how to use Morea, please see https://morea-framework.github.io.
 
