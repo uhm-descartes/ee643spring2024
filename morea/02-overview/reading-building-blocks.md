@@ -8,6 +8,9 @@ morea_type: reading
 morea_labels:
 ---
 
+* TOC
+{:toc}
+
 # Basic building blocks
 
 Here is the block diagram of a typical <span style="color: red;">point-to-point</span> communication system. The top row are blocks in the transmitter, and the bottom row are blocks in the receiver.

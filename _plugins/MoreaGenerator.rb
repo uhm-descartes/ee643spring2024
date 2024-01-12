@@ -89,11 +89,12 @@ module Morea
           @config['morea_domain'].chop!
         end
       end
+
       # Set the navbar background depending on the theme.
       if ["darkly"].include? @config['morea_theme'].to_s
         @config['morea_theme_navbar_bg'] = 'navbar-dark bg-dark'
       else
-        @config['morea_theme_navbar_bg'] = 'navbar-light bg-light'
+        @config['morea_theme_navbar_bg'] = 'navbar-dark bg-primary'
       end
       # logMoreaConfig()
     end
