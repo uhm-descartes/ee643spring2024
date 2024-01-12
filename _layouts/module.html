@@ -56,7 +56,7 @@ layout: default
     <div class="row">
       {% for page_id in page.morea_page.morea_readings %}
         {% assign reading = site.morea_page_table[page_id] %}
-        {% include entity-card.html url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
+        {% include entity-card.html type="reading" url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
       {% endfor %}
     </div>
   </div>
@@ -70,7 +70,7 @@ layout: default
     <div class="row">
       {% for page_id in page.morea_page.morea_experiences %}
         {% assign experience = site.morea_page_table[page_id] %}
-        {% include entity-card.html url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
+        {% include entity-card.html type="experience" url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
       {% endfor %}
     </div>
   </div>
@@ -84,7 +84,7 @@ layout: default
     <div class="row">
     {% for page_id in page.morea_page.morea_assessments %}
       {% assign assessment = site.morea_page_table[page_id] %}
-    {% include entity-card.html url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
+    {% include entity-card.html type="assessment" url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
     {% endfor %}
     </div>
   </div>

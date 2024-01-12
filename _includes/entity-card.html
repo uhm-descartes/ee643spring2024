@@ -1,6 +1,6 @@
 <!-- Internal fragment for displaying reading, experience, prereq cards. Prereqs have icons. -->
 <div class="col-md-6 col-lg-4" style="padding-bottom: 20px">
-  <div class="card h-100">
+  <div class="card h-100 {% if include.type == 'reading' %}border-primary{% elsif include.type == 'experience' %}border-success{% elsif include.type == 'assessment' %}border-danger{% endif %}">
     {% if include.icon_url %}
       <div class="text-center">
         <img alt="{{include.title}}" src="{{ include.icon_url }}" class="card-img-top rounded-circle" style="max-width: 100px; padding-top: 2px">

@@ -45,3 +45,8 @@ h1, h2, h3 {
 small {
   font-size: .7em
 }
+
+/* set a background color of the footer to differentiate it from the content */
+.footer-background {
+  background-color: var(--bs-primary-bg-subtle); 
+}
