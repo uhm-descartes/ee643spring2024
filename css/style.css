@@ -7,7 +7,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-      padding-top: 50px; /* Height for smaller screens */
+      padding-top: 30px; /* Height for smaller screens */
   }
 }
 
