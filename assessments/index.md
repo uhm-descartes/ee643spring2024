@@ -25,7 +25,7 @@ title: Assessments
        <div class="row">
        {% for page_id in module.morea_assessments %}
          {% assign assessment = site.morea_page_table[page_id] %}
-         {% include entity-card.html url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
+         {% include entity-card.html type="assessment" url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
        {% endfor %}
     </div>
   </div>

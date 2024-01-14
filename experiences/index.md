@@ -26,7 +26,7 @@ title: Experiences
     <div class="row">
     {% for page_id in module.morea_experiences %}
       {% assign experience = site.morea_page_table[page_id] %}
-      {% include entity-card.html url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
+      {% include entity-card.html type="experience" url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
     {% endfor %}
     </div>
   </div>

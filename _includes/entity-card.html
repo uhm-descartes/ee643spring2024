@@ -20,11 +20,14 @@
     {% endif %}
     </div>
 
-    <div style="border-top-color: transparent" class="card-footer bg-body">
+    {% if include.labels.size > 0 %}
+    <!-- <div style="border-top-color: transparent" class="card-footer bg-body"> -->
+    <div class="card-footer">
       {% for label in include.labels %}
-      <span class="badge bg-primary">{{ label }}</span>
+      <span class="badge {% if include.type == 'reading' %}bg-primary{% elsif include.type == 'experience' %}bg-success{% elsif include.type == 'assessment' %}bg-danger{% endif %}">{{ label }}</span>
       {% endfor %}
     </div>
+    {% endif %}
     <a href="{{ include.url }}" class="stretched-link"></a>
   </div>
 </div>

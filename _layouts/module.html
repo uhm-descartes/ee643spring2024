@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 {% include breadcrumb-3.html %}
 
 <div class="container">
@@ -51,7 +52,7 @@ layout: default
 {% unless page.morea_page.morea_readings.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-  <h2>Readings</h2>
+  <h2 class="text-primary">Readings</h2>
 
     <div class="row">
       {% for page_id in page.morea_page.morea_readings %}
@@ -66,7 +67,7 @@ layout: default
 {% unless page.morea_page.morea_experiences.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-  <h2>Experiential Learning</h2>
+  <h2 class="text-success">Experiential Learning</h2>
     <div class="row">
       {% for page_id in page.morea_page.morea_experiences %}
         {% assign experience = site.morea_page_table[page_id] %}
@@ -80,7 +81,7 @@ layout: default
 {% unless page.morea_page.morea_assessments.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-    <h2>Assessments</h2>
+    <h2class="text-danger">Assessments</h2>
     <div class="row">
     {% for page_id in page.morea_page.morea_assessments %}
       {% assign assessment = site.morea_page_table[page_id] %}

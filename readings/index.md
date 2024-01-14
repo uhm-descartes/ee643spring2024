@@ -22,7 +22,7 @@ title: Readings
     <div class="row">
     {% for page_id in module.morea_readings %}
       {% assign reading = site.morea_page_table[page_id] %}
-      {% include entity-card.html url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
+      {% include entity-card.html type="reading" url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
     {% endfor %}
     </div>
   </div>
