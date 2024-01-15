@@ -11,6 +11,19 @@ body {
   }
 }
 
+/* Add bottom margin to h1 heading for larger devices */
+@media (min-width: 768px) {
+  h1 {
+      margin-bottom: 2rem;
+  }
+}
+
+/* Add top margin to h2 heading for larger devices */
+@media (min-width: 768px) {
+  h2 {
+    margin-top: 1rem;
+  }
+}
 
 /* Make link anchors aware of sticky navbar */
 :target {
@@ -52,9 +65,11 @@ body {
   background-color: var(--bs-white);
 }
 
+/*
 h1, h2, h3 {
   margin-top: .20em;
 }
+*/
 
 small {
   font-size: .7em
@@ -63,4 +78,13 @@ small {
 /* set a background color of the footer to differentiate it from the content */
 .footer-background {
   background-color: var(--bs-primary-bg-subtle); 
+}
+
+/* Add top and bottom paddings to the footer on larger devices */
+@media (min-width: 768px) {
+  footer {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      margin-top: 2em;
+  }
 }

@@ -5,7 +5,7 @@ morea_type: home
 published: true
 ---
 
-## Welcome to EE 643, Spring 2024
+# Welcome to EE 643, Spring 2024
 
 In EE 643, we will learn the basics of wireless communication systems, exciting new topics such as the integration of artificial intelligence (AI) and wireless communications, and emerging paradigms of communication systems such as quantum communication.
 
