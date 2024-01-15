@@ -18,7 +18,7 @@ Here is the block diagram of a typical <span style="color: red;">point-to-point<
 
 Note that for each block in the transmitter, there is a counterpart in the receiver. Let us divide into each block and discuss their roles.
 
-## Source Encoder and Source Decoder
+## Source encoder and source decoder
 
 <figure style="text-align: center;">
   <img src="02-building-blocks-source-coding.png" alt="Source coding in a typical communication system" width="500">
@@ -32,7 +32,7 @@ Even if the source is already a binary sequence (e.g., a text message that is na
 
 Source coding is an important topic in information theory. But we will not dive deep into this topic in this course.
 
-## Channel Encoder and Channel Decoder
+## Channel encoder and channel decoder
 
 <figure style="text-align: center;">
   <img src="02-building-blocks-channel-coding.png" alt="Channel coding in a typical communication system" width="500">
@@ -44,7 +44,7 @@ Well, the source encoder removes the inherent redundancy in the source signal, w
 
 We will discuss some simple channel coding and decoding schemes in this course.
 
-## Modulator and Demodulator
+## Modulator and demodulator
 
 <figure style="text-align: center;">
   <img src="02-building-blocks-modulation.png" alt="Modulation in a typical communication system" width="500">
@@ -64,3 +64,4 @@ Therefore, the transmitter needs to carefully "modulate" the signal into the cor
 Modulation is also important in avoiding *multi-user interference*. For example, in LTE, if two AT&T cell phones are making phone calls in the same room, their signals will be modulated into different frequency bins withint the AT&T spectrum.
 
 Of course, the frequency is not the only degree of freedom. Modulation can place signals in different space and time. We will elaborate on this important topic later.
+

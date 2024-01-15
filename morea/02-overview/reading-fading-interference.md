@@ -16,7 +16,7 @@ There are two key challenges in wireless communications:
 
 Both challenges are *unique* in wireless communications.
 
-## How to Deal With Fading?
+## How to deal with fading?
 
 <figure style="text-align: center;">
   <img src="02-building-blocks-channel-coding.png" alt="Channel coding in a typical communication system" width="500">
@@ -27,7 +27,7 @@ As we discussed earlier, the channel encoder adds redundancy to combat the imper
 
 As we will see later, compared to other channel imperfections (e.g., noises), fading is much harder to deal with. Therefore, channel coding is particularly important in wireless communication systems.
 
-## How to Deal With Interference
+## How to deal with interference
 
 <figure style="text-align: center;">
   <img src="02-building-blocks-modulation.png" alt="Modulation in a typical communication system" width="500">

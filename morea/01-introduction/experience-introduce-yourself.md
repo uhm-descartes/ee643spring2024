@@ -9,7 +9,7 @@ morea_start_date: "2024-01-08T23:00"
 morea_labels:
 ---
 
-# E01: Introduce yourself
+# Introduce yourself
 
 ## Task
 
