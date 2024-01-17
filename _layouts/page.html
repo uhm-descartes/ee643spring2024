@@ -87,11 +87,11 @@ layout: core
         const nextHeadingTop = headings[i+1].offsetTop;
         const nextHeadingHeight = headings[i+1].offsetHeight;
 
-        console.log('Heading:', heading.id, 'Top:', headingTop, 'Height:', headingHeight, 'Scroll:', scrollPosition, 'Half screen height:', halfScreenHeight);
+        // console.log('Heading:', heading.id, 'Top:', headingTop, 'Height:', headingHeight, 'Scroll:', scrollPosition, 'Half screen height:', halfScreenHeight); // Debugging
 
         // Check if the scroll position is within the current heading
         if (scrollPosition + halfScreenHeight >= headingTop - headingHeight && (scrollPosition < headingTop - headingHeight || scrollPosition + halfScreenHeight < nextHeadingTop - nextHeadingHeight)) {
-            console.log('Found active link', heading.id); // Debugging
+            // console.log('Found active link', heading.id); // Debugging
             const activeLink = document.querySelector(`#toc-container a[href="#${heading.id}"]`);
             activeLink.classList.add('active');
             foundActive = true;

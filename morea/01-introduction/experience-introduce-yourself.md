@@ -4,7 +4,7 @@ published: true
 morea_id: experience-introduce-yourself
 morea_type: experience
 morea_summary: "Get started with the EE 643 Discord server"
-morea_sort_order: 3
+morea_sort_order: 10
 morea_start_date: "2024-01-08T23:00"
 morea_labels:
 ---

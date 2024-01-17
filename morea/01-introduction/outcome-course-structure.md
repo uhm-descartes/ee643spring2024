@@ -3,7 +3,7 @@ title: "Understand how to succeed in EE 643"
 published: true
 morea_id: outcome-course-structure
 morea_type: outcome
-morea_sort_order: 1
+morea_sort_order: 10
 ---
 
   * You get familiar with the Moreal framework, which enables moduled-based learning.

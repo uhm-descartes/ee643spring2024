@@ -6,12 +6,13 @@ morea_summary: "Wireless communication systems need to combat fading and interfe
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:
+morea_sort_order: 21
 ---
 
 # Key Challenges in Wireless Communications
 
 There are two key challenges in wireless communications:
-- *Fading*: The wireless channel is very random. A change of weather or a sudden change in the environment (e.g., people moving around) will change the channel condition. This changes happen in milliseconds or less.
+- *Fading*: The wireless channel is very random. A change of weather or a sudden change in the environment (e.g., people moving around) will change the channel condition. These changes happen in milliseconds or less.
 - *Interference*: The signals propagate in the open space, instead of through a conduit such as a cable. Therefore, the receiver gets signals intended for someone else, which are interference to its own communication.
 
 Both challenges are *unique* in wireless communications.

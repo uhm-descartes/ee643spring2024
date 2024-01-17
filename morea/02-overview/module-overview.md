@@ -18,7 +18,7 @@ morea_icon_url: /morea/02-overview/02-Wireless-vs-Wired.jpeg
 morea_start_date: "2024-01-08"
 morea_end_date: "2024-01-09"
 morea_labels:
-morea_sort_order: 21
+morea_sort_order: 2
 ---
 
 Overview of the key differences between wireless and wired communication systems
