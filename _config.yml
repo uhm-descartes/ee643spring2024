@@ -4,7 +4,7 @@
 # SITE SPECIFIC: The following fields are typically changed for each site
 name: EE 643 Spring 2024
 baseurl: /ee643spring2024
-morea_theme: cerulean-original
+morea_theme: litera
 timezone: Pacific/Honolulu
 morea_navbar_items:
   # - Prerequisites

@@ -5,4 +5,4 @@ morea_type: overview_outcomes
 published: true
 ---
 
-This page collects together all of the "outcomes" associated with individual modules. Outcomes identify what students will know and be able to do if they master the material.
+This page collects all of the "outcomes" associated with individual modules. Outcomes identify what students will know and be able to do if they master the material.

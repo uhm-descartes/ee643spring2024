@@ -11,6 +11,13 @@ body {
   }
 }
 
+/* Always show the scroll bar. Otherwise, the page widths are different when there is a scroll bar and when there is no scroll bar, resulting in a shift of the content */
+@media (min-width: 768px) {
+  body {
+    overflow-y: scroll;
+  }
+}
+
 /* Add bottom margin to h1 heading for larger devices */
 @media (min-width: 768px) {
   h1 {
@@ -26,6 +33,7 @@ body {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    text-align: justify;
   }
 }
 
@@ -119,6 +127,24 @@ small {
   }
 }
 
+/* Class of images with the shadow effect */
+.img-floating {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* horizontal-offset vertical-offset blur-radius color */
+}
+
+/* Adjust the size of images */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Adjust the size of figures */
+figure {
+  height: auto;
+  max-width: 100%;
+}
+
+
 /* Define a toc-sidebar class for the table of content on the sidebar */
 .toc-sidebar {
   position: fixed; /* or 'sticky' */
@@ -160,4 +186,3 @@ small {
 #toc-container a.active {
   color: var(--bs-link-hover-color); /* Color for active section link */
 }
-

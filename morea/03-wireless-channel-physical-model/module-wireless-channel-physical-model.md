@@ -11,6 +11,7 @@ morea_readings:
   - reading-03-free-space-fixed-antenna
   - reading-03-free-space-moving-antenna
   - reading-03-reflecting-wall-fixed-antenna
+  # - reading-03-reflecting-wall-moving-antenna
 morea_experiences:
   # - experience-CHANGE-ME
 morea_assessments:

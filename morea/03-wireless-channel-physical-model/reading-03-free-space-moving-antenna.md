@@ -1,5 +1,5 @@
 ---
-title: "Case 2: The antennas start moving..."
+title: "Case 2: Antennas start moving..."
 published: true
 morea_id: reading-03-free-space-moving-antenna
 morea_summary: "Moving antennas create Doppler shift"

@@ -1,31 +1,28 @@
 ---
-title: "Case 3: A wall enters the space"
+title: "Case 4: Reflecting wall and moving antennas"
 published: true
-morea_id: reading-03-reflecting-wall-fixed-antenna
+morea_id: reading-03-reflecting-wall-moving-antenna
 morea_summary: "Reflection creates delay spread"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:
-morea_sort_order: 33
+morea_sort_order: 34
 ---
 
-# Case 3: Fixed antennas with a reflecting wall
+# Case 4: Reflecting wall and moving antennas
 
 ## Ray tracing
 
-Now consider two antennas with distance \\(r\\) apart on the same horizontal plane (e.g., both on the ground). But there is a wall at distance \\(d\\) away from the transmit antenna.
+Continuing from the [previous example](reading-03-reflecting-wall-fixed-antenna.html), now we let the receive antenna move towards the wall at the speed \\(v\\).
 
 <figure style="text-align: center;">
-  <img src="03-reflecting-wall-fixed-antenna.png" alt="Two antennas with a reflecting wall" width="500">
+  <img src="03-reflecting-wall-moving-antenna.png" alt="Moving antennas with a reflecting wall" width="500">
 </figure>
 
-With a reflecting wall, there are two paths for the signal to reach the receiver: the line-of-sight (LOS) path and the path where the signal bounces back from the wall. The received signal is the superpositon of the two rays coming from these two paths. Calculating the received signal by tracing these two rays is called **ray tracing**. This is a commonly-used method to determine the channel quality.
-
-In our case, we already know how to determine the signal coming from the LOS path. For the reflected signal, we can think of it as a signal sent from a virtual transmitter that mirrors the actual transmitter at the other side of the wall. In other words, the virtual transmitter has a distance of \\(2d-r\\) from the receiver. Assuming that the wall is a *perfect reflector*, the received signal has no attenuation from the reflection and has a \\(180^\circ\\) phase shift. Then the received signal is
+We need to update the time-varying distance between the two antennas as \\(r(t) = r_0 + vt\\). Using the same ray tracing method, we can calculate the received signal as
 \\[
-  E_r(f,t) = \frac{\alpha \cos 2 \pi f \left[t - r/c\right]}{r} - \frac{\alpha \cos 2 \pi f \left[t - (2d-r)/c\right]}{2d-r}.
+  E_r(f,t) = \frac{\alpha \cos 2 \pi f \left[(1-v/c) t - r_0 / c\right]}{r_0+vt} - \frac{\alpha \cos 2 \pi f \left[(1+v/c)t + (r_0-2d)/c\right]}{2d-r_0-vt}.
 \\]
-Note that in the above equation, we have the minus operation because of the \\(180^\circ\\) phase shift. Note also that the radiation pattern term is assumed to be a constant \\(\alpha\\) for simplicity.
 
 ## Coherence distance, delay spread and coherence bandwidth
 From the expression, we know that the received signal is a superposition of two sinusoids. 
