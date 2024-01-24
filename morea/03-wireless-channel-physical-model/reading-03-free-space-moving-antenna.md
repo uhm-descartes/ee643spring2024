@@ -12,15 +12,21 @@ morea_sort_order: 32
 # Case 2: Moving antennas in the free space
 
 ## Analytical expression
-Consider the same two antennas in a free space. But now the receiver is moving *away* at the speed \\(v\\) in the direct opposite direction. In this case, the location of the receiver antenna is time-varying, namely
+Consider the same two antennas in a free space. But now the receiver is moving *away* at the speed \\(v\\) in the direct opposite direction. 
+
+<figure style="text-align: center;">
+  <img src="03-moving-antenna-free-space.png" alt="Moving antennas in the free space" width="500">
+</figure>
+
+In this case, the location of the receiver antenna is time-varying, namely
 \\[
-  \mathbf{u}(t) = \left( r(t), \theta, \phi \right), ~\text{with}~ r(t) = r_0 + vt,
+  \mathbf{u}(t) = \left( r(t), \theta, \psi \right), ~\text{with}~ r(t) = r_0 + vt,
 \\]
 where \\(r_0\\) is the initial distance at time \\(t=0\\).
 
 Compared to the case of fixed antennas, the only change is the distance \\(r(t)\\). Therefore, the received signal is
 \\[
-  E_r(f,t,(r(t), \theta, \phi)) = \frac{\alpha(\theta,\phi,f) \cos 2 \pi f \left[t - (r_0 + vt)/c\right]}{r_0 + vt} = \frac{\alpha(\theta,\phi,f) \cos 2 \pi f \left[(1-v/c)t - r_0/c\right]}{r_0 + vt}.
+  E_r(f,t,(r(t), \theta, \psi)) = \frac{\alpha(\theta,\psi,f) \cos 2 \pi f \left[t - (r_0 + vt)/c\right]}{r_0 + vt} = \frac{\alpha(\theta,\psi,f) \cos 2 \pi f \left[(1-v/c)t - r_0/c\right]}{r_0 + vt}.
 \\]
 
 ## Doppler shift

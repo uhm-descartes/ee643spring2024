@@ -2,7 +2,7 @@
 title: "Fading and Interference in Wireless Communications"
 published: true
 morea_id: reading-fading-interference
-morea_summary: "Wireless communication systems need to combat fading and interference"
+morea_summary: "Key challenges: fading and interference"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:

@@ -43,7 +43,7 @@ In practice, the transmit signal is not a sinusoid. But any practical transmit s
 Hence, the wireless channel "produce" multiple delayed versions of the transmit signal from multipath and adds them all up at the receiver:
 
 <figure style="text-align: center;">
-  <img src="04-wireless-channel-multipath.png" alt="Multipath in wireless channel" width="400">
+  <img src="04-wireless-channel-multipath.png" alt="Multipath in wireless channel" width="600">
 </figure>
 
 Both the weight \\(a_i(t)\\) and the delay \\(\tau_i(t)\\) depend on the distance of the path. In addition, the weight also depends on the radiation patterns of the antennas. But this factor is assumed to be fixed. The delay \\(\tau_i(t)\\) may also depend on the phase shift when the signal is reflected from a surface.

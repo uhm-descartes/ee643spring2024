@@ -2,7 +2,7 @@
 title: "Building Blocks of Communication Systems"
 published: true
 morea_id: reading-building-blocks
-morea_summary: "Building blocks of a typical communication system"
+morea_summary: "Building blocks of communication systems"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:

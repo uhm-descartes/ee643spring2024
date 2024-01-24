@@ -11,9 +11,11 @@ morea_readings:
   - reading-03-free-space-fixed-antenna
   - reading-03-free-space-moving-antenna
   - reading-03-reflecting-wall-fixed-antenna
-  # - reading-03-reflecting-wall-moving-antenna
+  - reading-03-reflecting-wall-moving-antenna
+  - reading-03-practical-propagation-environment
 morea_experiences:
-  # - experience-CHANGE-ME
+  - experience-03-fixed-antenna-reflecting-wall
+  - experience-03-moving-antenna-reflecting-wall
 morea_assessments:
   # - assessment-CHANGE-ME
 morea_type: module
