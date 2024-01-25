@@ -1,5 +1,5 @@
 ---
-title: "Simulation on coherence distance and coherence bandwidth"
+title: "Coherence distance and coherence bandwidth"
 published: true
 morea_id: experience-03-fixed-antenna-reflecting-wall
 morea_type: experience

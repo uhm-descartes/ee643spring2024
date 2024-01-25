@@ -7,6 +7,7 @@ morea_prerequisites:
 morea_outcomes:
   - outcome-04-wireless-channel-input-output-model
 morea_readings:
+  - reading-04-roadmap
   - reading-04-linear-time-varying-system
 morea_experiences:
   # - experience-CHANGE-ME

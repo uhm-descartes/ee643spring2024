@@ -18,7 +18,7 @@ If we review the physical models in the previous module, we can find a pattern. 
   \sum_{i} a_i(f,t) \phi(t - \tau_i(f,t)).
 \\]
 
-Take the most complex model, namely moving antennas with a perfectly reflecting wall, as an example. The received signal is
+Take the most complex model, namely moving antennas with a reflecting wall, as an example. The received signal is
 \\[
   E_r(f,t) = \frac{\alpha \cos 2 \pi f \left[(1-v/c) t - r_0 / c\right]}{r_0+vt} - \frac{\alpha \cos 2 \pi f \left[(1+v/c)t + (r_0-2d)/c\right]}{2d-r_0-vt}.
 \\]
@@ -35,7 +35,7 @@ where the \\(\frac{1}{2f}\\) term in \\(\tau(t)\\) comes from the \\(180^\circ\\
 
 In summary, the received signal is the weighted sum of sinusoids with different delays.
 
-In practice, the transmit signal is not a sinusoid. But any practical transmit signal can be viewed as a superpositon of sinusoids of different frequencies. Therefore, for any transmit signal \\(x(t)\\)), the above linear relationship is preserved. In other words, we can write the receive signal \\(y(t)\\) as
+In practice, the transmit signal is not a sinusoid. But any practical transmit signal can be viewed as a superpositon of sinusoids of different frequencies. Therefore, for any transmit signal \\(x(t)\\), the above linear relationship is preserved. In other words, we can write the receive signal \\(y(t)\\) as
 \\[
   y(t) = \sum_i a_i(t) x(t-\tau_i(t)).
 \\]

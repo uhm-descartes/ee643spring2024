@@ -17,7 +17,7 @@ morea_experiences:
   - experience-03-fixed-antenna-reflecting-wall
   - experience-03-moving-antenna-reflecting-wall
 morea_assessments:
-  # - assessment-CHANGE-ME
+  - assessment-03-physical-model
 morea_type: module
 morea_icon_url: /morea/03-wireless-channel-physical-model/03-module-icon-ray-tracing.png
 morea_start_date: "2024-01-10"
