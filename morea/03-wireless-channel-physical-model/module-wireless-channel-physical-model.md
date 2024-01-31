@@ -26,4 +26,4 @@ morea_labels:
 morea_sort_order: 3
 ---
 
-We discuss physical models of wireless channels through some simplified examples, which reveal some key features of wireless channels.
+Discussion of physical models of wireless channels through some simplified examples, which reveal some key features of wireless channels.

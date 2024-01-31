@@ -57,7 +57,7 @@ The radio spectrum is a very scarce resource. [Mobile operators spend tens of bi
 <i class="fa-solid fa-circle-info fa-xl"></i> **Excerpt from an article by S&P Global**
 <hr/>
 
-Verizon, meanwhile, spent $45.45 billion in the C-band spectrum auction in 2021 when the Federal Communications Commission auctioned 280 MHz of spectrum in the 3.7 GHz-3.98 GHz band. AT&T dished out $23.41 billion in the C-band auction and then followed that up by shelling out an additional $9.08 billion in the subsequent 3.45 GHz auction, which ended earlier this month. All told, the carrier spent $32.49 billion on mid-band spectrum across the two auctions.
+Verizon, meanwhile, spent \\$45.45 billion in the C-band spectrum auction in 2021 when the Federal Communications Commission auctioned 280 MHz of spectrum in the 3.7 GHz-3.98 GHz band. AT&T dished out \\$23.41 billion in the C-band auction and then followed that up by shelling out an additional \\$9.08 billion in the subsequent 3.45 GHz auction, which ended earlier this month. All told, the carrier spent \\$32.49 billion on mid-band spectrum across the two auctions.
 </div>
 
 Therefore, the transmitter needs to carefully "modulate" the signal into the correct frequency band, and the receiver needs to "demodulate" (i.e., retrieve) the signal from the correct band.

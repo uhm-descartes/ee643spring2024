@@ -34,15 +34,30 @@ For our discussion, we need the following properties of the Fourier transform:
   * For any real-valued signal $s(t)$, we have $S(-f) = S^*(f)$. In other words, its spectrum in the negative frequencies is the conjugate of the spectrum in the positive frequencies.
   * The Fourier transform of $s(t) e^{j 2 \pi f_c t}$ is $S(f-f_c)$. In other words, phase shift in the time domains leads to frequency shift in the frequency domain.
 
+<div class="alert alert-info" role="alert" markdown="1">
+<i class="fa-solid fa-circle-info fa-xl"></i> **What do negative frequencies mean? Why we never talk about them?**
+<hr/>
+Please see [this discussion in StackExchange](https://electronics.stackexchange.com/questions/15539/negative-frequencies-what-is-that) for the physical meaning of negative frequencies. In short, the complex sinusoid $e^{-j 2 \pi f t}$ at a negative frequency $-f < 0$ is *rotating in the opposite direction* of the complex sinusoid at the positive frequency $f > 0$.
+
+Although negative frequencies do have physical meanings, we almost never talk about them. This is because in practice, the signals are real-valued, leading to a spectrum with $S(-f) = S^*(f)$. Therefore, we can calculate the negative frequency component from the positive frequency componenet. Since the positive frequency component is all what we need, we focus on the positive frequency domain only.
+</div>
+
 ### How to convert between baseband and passband?
+
+Now consider a real-valued passband signal $s(t)$, occuply the spectrum $\left[ f_c - W/2, f_c + W/2 \right]$ of bandwidth $W$ around a center frequency $f_c$. We illustrate its Fourier transform $S(f)$ below: 
 
 <figure style="text-align: center;">
   <img src="04-passband-spectrum.png" alt="Spectrum of a passband signal" width="600">
 </figure>
 
-**passband** $\left[ f_c - W/2, f_c + W/2 \right]$ of bandwidth $W$ around a center frequency $f_c$. The passband is usually in the gigahertz (GHz) spectrum. However, most signal processing (e.g., coding/decodiing, modulation/demodulation) is done in the **baseband** $\left[ -W/2, W/2 \right]$ 
+Notice how the real part of the spectrum is symmetric and the imaginary part is antisymmetric, which is a property of Fourier transform of real-valued signals.
 
-From the figure, we can see that the passband spectrum $S(f)$ can be written in terms of the baseband spectrum $S_b(f)$ as follows
+The corresponding baseband signal $s_b(t)$ occupies the spectrum $\left[ -W/2, W/2 \right]$ centered around zero frequency:
+<figure style="text-align: center;">
+  <img src="04-passband-spectrum.png" alt="Spectrum of a passband signal" width="600">
+</figure>
+
+From the figure, we can see that the baseband spectrum is obtained by shifting the positive frequency component of the passband spectrum to the left. Note that the magnitude of the baseband spectrum is multiplied by $\sqrt{2}$, so that the baseband signal has the same total energy as the passband signal. Therefore, the passband spectrum $S(f)$ can be written in terms of the baseband spectrum $S_b(f)$ as follows
 \\[
   S(f) = \frac{1}{\sqrt{2}} \left[ S_b(f-f_c) + S_b^*(-f-f_c) \right].
 \\]
@@ -56,21 +71,22 @@ $$
 \end{align}
 $$
 
-From \eqref{eqn:upconversion}, we can see how we can upconvert or modulate the baseband signal to the passband. In particular, we can have two streams of signals, which are regarded as the real part $\mathfrak{R}\left[s_b(t)\right]$ and the imaginary part $\mathfrak{I}\left[s_b(t)\right]$ of a complex baseband signal $s_b(t)$. Then we multiply the real part by $\sqrt{2} \cos{2 \pi f_c t}$ and the imaginary part by $-\sqrt{2} \sin{2 \pi f_c t}$, and sum up the products.
+Equation \eqref{eqn:upconversion} tells us how to upconvert or modulate the baseband signal to the passband. In particular, we can have two streams of signals, which are regarded as the real part $\mathfrak{R}\left[s_b(t)\right]$ and the imaginary part $\mathfrak{I}\left[s_b(t)\right]$ of a complex baseband signal $s_b(t)$. Then we multiply the real part by $\sqrt{2} \cos{2 \pi f_c t}$ and the imaginary part by $-\sqrt{2} \sin{2 \pi f_c t}$, and sum up the products.
 
-\\[
-  s(t) = \sqrt{2} \mathfrak{R}\left[ s_b(t) e^{j 2 \pi f_c t} \right]
-\\]
+To downconvert the passband signal to the baseband, we can multiply the passband signal $s(t)$ by $e^{-j 2 \pi f_c t}$ and pass it through a low pass filter.
 
 ## Equivalent baseband channel model
-Based on the above analysis, we can consider the channel as a linear time-varying filter. The input/output relationship of the filter can be written as
-\\[
-  y(t) = \int_{-\infty}^{\infty} h(\tau, t) x(t-\tau) d\tau,
-\\]
-where the impulse response is
-\\[
-  h(\tau,t) = \sum_{i} a_i(t) \delta(\tau - \tau_i(t)).
-\\]
+Now that we know how to convert between the passband signal and the baseband signal, we can derive an equivalent input/output model of the channel in the baseband. 
+
+To derive it, we first note that the relationship between the passband signal and the baseband signal in \eqref{eqn:upconversion} can be rewritten as
+$$
+\begin{align}
+  s(t) = \sqrt{2} \mathfrak{R}\left[ s_b(t) e^{j 2 \pi f_c t} \right], \label{eqn:passband-baseband-conversion}
+\end{align}
+$$
+which holds true for any signal, including the transmitted signal $x(t)$ or its delayed version $x(t-\tau)$.
+
+Starting from the input/ouput model derived [previously](reading-04-linear-time-varying-system.html), we have
 
 $$
 \begin{align}
@@ -81,6 +97,8 @@ $$
         & = \sqrt{2} \mathfrak{R}\left[ \left( {\color{red} \sum_i \left( a_i(t)  e^{-j 2 \pi f_c \tau_i(t)} \right) x_b(t - \tau_i(t)) } \right) e^{j 2 \pi f_c t} \right] \label{eqn:passband-receive-signal-1}
 \end{align}
 $$
+
+Applying \eqref{eqn:passband-baseband-conversion} to the receive signal $y(t)$, we have
 
 \begin{align}
   y(t) = \sqrt{2} \mathfrak{R}\left[ {\color{red} y_b(t)} e^{j 2 \pi f_c t} \right] \label{eqn:passband-receive-signal-2}
