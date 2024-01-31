@@ -69,6 +69,12 @@ body {
   }
 }
 
+/* Make the font in the lists the same as the main text (only needed if the theme is litera
+ul, ol, li {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;;
+}
+ */
+
 /* Make link anchors aware of sticky navbar */
 :target {
   scroll-margin-top: 60px;
@@ -185,4 +191,21 @@ figure {
 
 #toc-container a.active {
   color: var(--bs-link-hover-color); /* Color for active section link */
+}
+
+/* boxed equations */
+.math-box-container {
+  text-align: center; /* Center the inline-block element */
+}
+
+.math-box {
+  border-width: 0.2rem 0.1rem; /* Top & Bottom | Left & Right */
+  border-style: solid;
+  border-color: var(--bs-info-text-emphasis);
+  background-color: var(--bs-info-bg-subtle); 
+  padding: 0 10px; /* No extra top/bottom padding, standard left/right */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Drop shadow effect */
+  display: inline-block; /* Change to block if it's not already */
+  margin-left: auto;
+  margin-right: auto;
 }

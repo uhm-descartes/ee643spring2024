@@ -6,6 +6,7 @@ morea_type: outcome
 morea_sort_order: 40
 ---
 
-  * You know how to write the input/output model of wireless channels in the form of tap gain filters.
-  * You understand the relationship of the actual signals and their baseband equivalent representations.
-  * You understand the concept of I/Q channels and how they are implemented in practice.
+  * You understand the input/output models of wireless channels as finite impulse response (FIR) filters.
+  * You understand the relationship between channel models in continuous-time passband, in continuous-time baseband, and in discrete-time baseband.
+  * You understand how the discrete-time baseband signal is converted to the continuous-time passband signal at the transmit antenna, and how the continuous-time passband signal at the receive antenna is converted back to discrete-time baseband for processing.
+  * You can write codes to implement the channel models based on given parameters.

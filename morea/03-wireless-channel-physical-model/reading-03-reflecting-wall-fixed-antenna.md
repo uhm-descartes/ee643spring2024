@@ -54,13 +54,13 @@ In terms of the frequency, the signal strength changes from a peak to a valley w
 \\[
   \frac{1}{2} \left( \frac{2d-r}{c} - \frac{r}{c} \right)^{-1}.
 \\]
-Notice that the reciprocal of the above quantity, namely
+Notice that the following quantity
 \\[
   T_d = \frac{2d-r}{c} - \frac{r}{c},
 \\]
 is actually the propagation delay of the two paths. This is called **delay spread**.
 
-We define \\(1/T_d\\) as the **coherence bandwidth**.
+From the two equations above, we define \\(1/(2T_d)\\) as the **coherence bandwidth**. We can see that the coherence bandwidth is of the order of $1/T_d$.
 
 ## Take-away
 In wireless communication channels, multipath is common. Multipath creates **delay spread**, resulting in phase differences between signals arriving from different paths. The signals can either add up or canel each other. 
