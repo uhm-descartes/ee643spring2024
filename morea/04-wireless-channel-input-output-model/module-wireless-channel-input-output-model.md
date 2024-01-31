@@ -12,8 +12,8 @@ morea_readings:
   - reading-04-baseband-equivalent-model
   # - reading-04-discrete-time-baseband-model
 morea_experiences:
-  - experience-04-baseband-passband-conversion
-  - experience-04-sampling-theorem
+  # - experience-04-baseband-passband-conversion
+  # - experience-04-sampling-theorem
 morea_assessments:
   # - assessment-CHANGE-ME
 morea_type: module
