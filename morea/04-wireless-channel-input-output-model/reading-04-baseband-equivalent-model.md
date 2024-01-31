@@ -17,7 +17,7 @@ Most wireless communication systems send signals at the gigahertz (GHz) frequenc
 
 Therefore, we *upconvert* the baseband signal to the passband before sending it from the transmitter, and *downconvert* the passband signal to the baseband after receiving it at the receiver.
 
-## Conversion of baseband and passband signals
+## Conversion between baseband and passband signals
 
 ### Review of Fourier transform
 

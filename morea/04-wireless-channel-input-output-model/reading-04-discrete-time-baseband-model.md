@@ -2,60 +2,82 @@
 title: "The discrete-time baseband model"
 published: true
 morea_id: reading-04-discrete-time-baseband-model
-morea_summary: "Also in discrete time"
+morea_summary: "Processing is also done in discrete time"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:
 morea_sort_order: 43
 ---
 
-# The baseband equivalent model
+# The discrete-time baseband model
 
-## Summarizing the physical models
+The signal processing is not only done in the baseband, but also in discrete time. This is because the digital chips ultimately work in the discrete time. However, the signal transmitted in the air is continuous-time. 
 
-If we review the physical models in the previous module, we can find a pattern. Specifically, for the sinusoid transmit signal \\(\phi(t) = \cos 2\pi f t\\), the receive signal can always be written as
+How do we convert the discrete-time signal in devices to a continuous-time signal ready for transmission, and how we convert the continuous-time signal received to a discrete-time signal for processing in the receiver?
+
+## Conversion between discrete time and continuous time
+
+### The sampling theorem
+
+For any signal $s(t)$ with a bandwidth limited in $[-W/2, W/2]$, the sampling theorem asserts that we can sample it at a sampling frequency equal to its bandwidth $W$, namely at a sampling interval of $1/W$, and perfectly reconstruct it by
+
+\begin{align}
+  s(t) = \sum_{n} s[n] \text{sinc}(Wt-n),
+\end{align}
+where $s[n] = s(n/W)$ is the $n$-th sample, and $\text{sinc}(t)$ is defined as
+
+\begin{align}
+  \text{sinc}(t) \triangleq \frac{\sin(\pi t)}{\pi t}.
+\end{align}
+
+We can see that to perfectly reconstruct the continuous-time signal from its samples, we must sample it at a frequency at least as large as its bandwidth. This is intuitive. A signal with a larger bandwidth contains components at higher frequencies, which translate to faster variations in the time domain. Therefore, we need to sample it at smaller intervals to avoid missing any information.
+
+This is also part of the reason why we want to do signal processing in the baseband. The passband signal has the highest frequency up to $f_c+W/2$, requiring us to sample it at a sampling frequency of $2 f_c + W$, which is much higher than the sampling frequency of $W$ required for a baseband signal.
+
+### Modulation
+
+The sampling theorem also suggests how we should convert the discrete-time data stream $x[n]$ to the continuous-time baseband signal $x_b(t)$:
+
+\begin{align}
+  x_b(t) = \sum_{n} x[n] \text{sinc}(Wt-n)
+\end{align}
+
+In other words, we pass the data stream $x[n]$ through a filter whose impulse response is the sinc function. We can also say that we "modulate" the data stream by the sinc function. 
+
+In practice, we usually use other functions (e.g., raised cosine) to modulate the discrete-time signals.
+
+## Discrete-time baseband channel model
+Now that we know how to convert between the discrete-time signal and the continuous-time signal, we can derive an equivalent input/output model of the channel in the baseband and also in discrete time. As you may have guessed, the equivalent channel model is also a FIR filter, but in discrete time. 
+
+Using the [equivalent channel model in the baseband](reading-04-baseband-equivalent-model.html), we can write the baseband receive signal as
+
+$$
+\begin{align}
+  y_b(t)  & = \sum_i a_i^b(t) x_b(t - \tau_i(t)) \notag\\
+          & = \sum_i a_i^b(t) \sum_{n} x[n] \text{sinc}\left[W(t-\tau_i(t))-n\right] \notag\\
+          & = \sum_{n} x[n] \sum_i a_i^b(t) \text{sinc}\left(Wt-W\tau_i(t)-n\right). \notag
+\end{align}
+$$
+
+The $m$-th sample of the baseband receive signal $y_b(t)$ is then
+
+\begin{align}
+  y[m] = y_b(m/W) = \sum_{n} x[n] \sum_i a_i^b(m/W) \text{sinc}\left[m-W\tau_i(m/W)-n\right] \notag
+\end{align}
+
+Defining the delay $\ell \triangleq m-n$, we have
+
+\begin{align}
+  y[m] = \sum_{\ell} x[m-\ell] \sum_i a_i^b(m/W) \text{sinc}\left[\ell-\tau_i(m/W) W\right] \notag
+\end{align}
+
+In conclusion, we can define the **discrete-time baseband equivalent channel model** as
 \\[
-  \sum_{i} a_i(f,t) \phi(t - \tau_i(f,t)).
+  h_\ell[m] = \sum_i a_i^b(m/W) \text{sinc}\left[\ell-W\tau_i(m/W)\right],
 \\]
+so that the discrete-time baseband receive signal can be written as
+$$
+  y[m] = \sum_{\ell} h_\ell[m] x[m-\ell].
+$$
 
-Take the most complex model, namely moving antennas with a perfectly reflecting wall, as an example. The received signal is
-\\[
-  E_r(f,t) = \frac{\alpha \cos 2 \pi f \left[(1-v/c) t - r_0 / c\right]}{r_0+vt} - \frac{\alpha \cos 2 \pi f \left[(1+v/c)t + (r_0-2d)/c\right]}{2d-r_0-vt}.
-\\]
-
-As complicated as it seems, we can cast it in the general form by setting
-\\[
-  a_1(t) = \frac{\alpha}{r_0+vt}, ~~ \tau_1(t) = \frac{r_0+vt}{c}
-\\]
-and
-\\[
-  a_2(t) = \frac{\alpha}{2d-r_0-vt}, ~~ \tau_2(t) = \frac{2d-r_0-vt}{c} - \frac{1}{2f},
-\\]
-where the \\(\frac{1}{2f}\\) term in \\(\tau(t)\\) comes from the \\(180^\circ\\) phase shift in the reflected signal.
-
-In summary, the received signal is the weighted sum of sinusoids with different delays.
-
-In practice, the transmit signal is not a sinusoid. But any practical transmit signal can be viewed as a superpositon of sinusoids of different frequencies. Therefore, for any transmit signal \\(x(t)\\)), the above linear relationship is preserved. In other words, we can write the receive signal \\(y(t)\\) as
-\\[
-  y(t) = \sum_i a_i(t) x(t-\tau_i(t)).
-\\]
-
-Hence, the wireless channel "produce" multiple delayed versions of the transmit signal from multipath and adds them all up at the receiver:
-
-<figure style="text-align: center;">
-  <img src="04-wireless-channel-multipath.png" alt="Multipath in wireless channel" width="400">
-</figure>
-
-Both the weight \\(a_i(t)\\) and the delay \\(\tau_i(t)\\) depend on the distance of the path. In addition, the weight also depends on the radiation patterns of the antennas. But this factor is assumed to be fixed. The delay \\(\tau_i(t)\\) may also depend on the phase shift when the signal is reflected from a surface.
-
-## The linear time-varying system model
-Based on the above analysis, we can consider the channel as a linear time-varying filter. The input/output relationship of the filter can be written as
-\\[
-  y(t) = \int_{-\infty}^{\infty} h(\tau, t) x(t-\tau) d\tau,
-\\]
-where the impulse response is
-\\[
-  h(\tau,t) = \sum_{i} a_i(t) \delta(\tau - \tau_i(t)).
-\\]
-
-This is a very useful and commonly-used view of the wireless channel: it is a finite impulse response (FIR) filter with time-varying tap gains!
+Therefore, the discrete-time baseband equivalent chanenl model is *also a complex-valued FIR filter!*
