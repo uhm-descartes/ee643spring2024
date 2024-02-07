@@ -127,7 +127,7 @@ small {
 /* Add top and bottom paddings to the footer on larger devices */
 @media (min-width: 768px) {
   footer {
-      padding-top: 2rem;
+      padding-top: 1rem;
       padding-bottom: 2rem;
       margin-top: 2em;
   }

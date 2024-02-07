@@ -34,7 +34,7 @@ From the expression, we know that the received signal is a superposition of two 
 
 Let us formulate this idea mathematically. The phase difference between the two sinusoids is
 \\[
-  \Delta \theta = \left( \frac{2 \pi f (2d-r)}{c} + \pi \right) - \left( \frac{2 \pi f r}{c} + \pi \right) = \frac{4 \pi f}{c} (d-r) + \pi.
+  \Delta \theta = \left( \frac{2 \pi f (2d-r)}{c} + \pi \right) - \left( \frac{2 \pi f r}{c} \right) = \frac{4 \pi f}{c} (d-r) + \pi.
 \\]
 
 The two sinusoids go from adding up constructively to canceling each other when the phase difference changes by \\(\pi\\), namely when
@@ -55,10 +55,8 @@ In terms of the frequency, the signal strength changes from a peak to a valley w
   \frac{1}{2} \left( \frac{2d-r}{c} - \frac{r}{c} \right)^{-1}.
 \\]
 Notice that the following quantity
-\\[
-  T_d = \frac{2d-r}{c} - \frac{r}{c},
-\\]
-is actually the propagation delay of the two paths. This is called **delay spread**.
+the difference between the propagation delay of the two paths
+is actually the difference between the propagation delay of the two paths. This is called **delay spread**.
 
 From the two equations above, we define \\(1/(2T_d)\\) as the **coherence bandwidth**. We can see that the coherence bandwidth is of the order of $1/T_d$.
 

@@ -15,7 +15,7 @@ morea_experiences:
   - experience-04-baseband-passband-conversion
   - experience-04-sampling-theorem
 morea_assessments:
-  # - assessment-CHANGE-ME
+  # - assessment-04-input-output-model
 morea_type: module
 morea_icon_url: /morea/04-wireless-channel-input-output-model/04-module-icon-multipath.png
 morea_start_date: "2024-01-22"
