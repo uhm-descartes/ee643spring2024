@@ -8,7 +8,10 @@ morea_outcomes:
   - outcome-05-detection-in-fading-channel
 morea_readings:
   - reading-05-roadmap
-  # - reading-05-awgn-vs-fading
+  - reading-05-complex-gaussian
+  - reading-05-awgn-vs-fading
+  - reading-05-noncoherent-detection
+  - reading-05-coherent-detection
 morea_experiences:
   - experience-05-ber-vs-snr-curve
 morea_assessments:

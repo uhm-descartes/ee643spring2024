@@ -6,7 +6,7 @@ morea_summary: "A failed attempt in the fading channel"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:
-morea_sort_order: 51
+morea_sort_order: 52
 ---
 
 # AWGN channel versus fading channel
@@ -25,12 +25,12 @@ In contrast, the input/output model of a wireless Rayleigh fading channel with o
 \end{align}
 where $h[m]$ is a circularly symmetric Gaussian random variable. Therefore, the channel has a magnitude following the Rayleigh distribution, and a phase following a uniform distribution in $[0, 2\pi]$.
 
-Next, we use a simple signaling scheme, Binary Phase-shift keying (BPSK), to illustrate the key differences of the AWGN channel and the Rayleigh fading channel.
+Next, we use a simple signaling scheme, binary phase-shift keying (BPSK), to illustrate the key differences of the AWGN channel and the Rayleigh fading channel.
 
 
 ## Performance in the AWGN channel
 
-In BPSK, we assign the binary bits of 0 and 1 to $x[m]=-a$ and $x[m]=+a$, respectively. Our goal is to determine which signal was sent base on the received signal $y[m]$. Therefore, we need to derive the optimal detection rule. 
+In BPSK, we assign the binary bits of 0 and 1 to $x[m]=-a$ and $x[m]=+a$, respectively. Our goal is to determine which signal was sent base on the received signal $y[m] = x[m] + w[m]$. Therefore, we need to derive the optimal detection rule. 
 
 ### Maximum likelihood detector
 
@@ -45,67 +45,79 @@ $$
 \right.
 $$
 
-Since
+When $x[m]=+a$, we have $y[m] - a \sim \mathcal{CN}(0, N_0)$, and when $x[m]=-a$, we have $y[m] + a \sim \mathcal{CN}(0, N_0)$. Hence, the conditional probability density function can be written explicitly as
 
-For any signal $s(t)$ with a bandwidth limited in $[-W/2, W/2]$, the sampling theorem asserts that we can sample it at a sampling frequency equal to its bandwidth $W$, namely at a sampling interval of $1/W$, and perfectly reconstruct it by
+\begin{aligned} 
+  \mathbf{P}(y[m] \vert x[m]=+a) = \frac{1}{\pi N_0} e^{-\frac{\vert y[m] - a \vert^2}{N_0}} && \text{and} && \mathbf{P}(y[m] \vert x[m]=-a) = \frac{1}{\pi N_0} e^{-\frac{\vert y[m] + a \vert^2}{N_0}}.
+\end{aligned} 
 
-\begin{align}
-  s(t) = \sum_{n} s[n] \text{sinc}(Wt-n),
-\end{align}
-where $s[n] = s(n/W)$ is the $n$-th sample, and $\text{sinc}(t)$ is defined as
-
-\begin{align}
-  \text{sinc}(t) \triangleq \frac{\sin(\pi t)}{\pi t}.
-\end{align}
-
-We can see that to perfectly reconstruct the continuous-time signal from its samples, we must sample it at a frequency at least as large as its bandwidth. This is intuitive. A signal with a larger bandwidth contains components at higher frequencies, which translate to faster variations in the time domain. Therefore, we need to sample it at smaller intervals to avoid missing any information.
-
-This is also part of the reason why we want to do signal processing in the baseband. The passband signal has the highest frequency up to $f_c+W/2$, requiring us to sample it at a sampling frequency of $2 f_c + W$, which is much higher than the sampling frequency of $W$ required for a baseband signal.
-
-### Modulation
-
-The sampling theorem also suggests how we should convert the discrete-time data stream $x[n]$ to the continuous-time baseband signal $x_b(t)$:
-
-\begin{align}
-  x_b(t) = \sum_{n} x[n] \text{sinc}(Wt-n)
-\end{align}
-
-In other words, we pass the data stream $x[n]$ through a filter whose impulse response is the sinc function. We can also say that we "modulate" the data stream by the sinc function. 
-
-In practice, we usually use other functions (e.g., raised cosine) to modulate the discrete-time signals.
-
-## Discrete-time baseband channel model
-Now that we know how to convert between the discrete-time signal and the continuous-time signal, we can derive an equivalent input/output model of the channel in the baseband and also in discrete time. As you may have guessed, the equivalent channel model is also a FIR filter, but in discrete time. 
-
-Using the [equivalent channel model in the baseband](reading-04-baseband-equivalent-model.html), we can write the baseband receive signal as
+Therefore, we have
 
 $$
-\begin{align}
-  y_b(t)  & = \sum_i a_i^b(t) x_b(t - \tau_i(t)) \notag\\
-          & = \sum_i a_i^b(t) \sum_{n} x[n] \text{sinc}\left[W(t-\tau_i(t))-n\right] \notag\\
-          & = \sum_{n} x[n] \sum_i a_i^b(t) \text{sinc}\left(Wt-W\tau_i(t)-n\right). \notag
-\end{align}
+\begin{aligned} 
+                  & \quad \mathbf{P}(y[m] \vert x[m]=+a) > \mathbf{P}(y[m] \vert x[m]=-a) \\
+  \Leftrightarrow & \quad \vert y[m] - a \vert^2 < \vert y[m] + a \vert^2 \\
+  \Leftrightarrow & \quad \mathfrak{R}(y[m])^2 - 2 a \mathfrak{R}(y[m]) + a^2 + \mathfrak{I}(y[m])^2 < \mathfrak{R}(y[m])^2 + 2 a \mathfrak{R}(y[m]) + a^2 + \mathfrak{I}(y[m])^2 \\
+  \Leftrightarrow & \quad \mathfrak{R}(y[m]) > 0
+\end{aligned} 
 $$
 
-The $m$-th sample of the baseband receive signal $y_b(t)$ is then
+Then the detection rule can be simplified into
 
-\begin{align}
-  y[m] = y_b(m/W) = \sum_{n} x[n] \sum_i a_i^b(m/W) \text{sinc}\left[m-W\tau_i(m/W)-n\right] \notag
-\end{align}
-
-Defining the delay $\ell \triangleq m-n$, we have
-
-\begin{align}
-  y[m] = \sum_{\ell} x[m-\ell] \sum_i a_i^b(m/W) \text{sinc}\left[\ell-\tau_i(m/W) W\right] \notag
-\end{align}
-
-In conclusion, we can define the **discrete-time baseband equivalent channel model** as
-\\[
-  h_\ell[m] = \sum_i a_i^b(m/W) \text{sinc}\left[\ell-W\tau_i(m/W)\right],
-\\]
-so that the discrete-time baseband receive signal can be written as
 $$
-  y[m] = \sum_{\ell} h_\ell[m] x[m-\ell].
+\hat{x}[m] = \left\{ 
+  \begin{aligned} 
+    &+a, && \text{if } \mathfrak{R}(y[m]) \ge 0, \\ 
+    &-a, && \text{if } \mathfrak{R}(y[m]) < 0.
+  \end{aligned} 
+\right.
 $$
 
-Therefore, the discrete-time baseband equivalent chanenl model is *also a complex-valued FIR filter!*
+The optimal detection rule is also very intuitive. Since the signal $x[m] = \pm a$ is real-valued, we only need to check the real part of the received signal $\mathfrak{R}(y[m])$. If it is positive, it is more likely that $+a$ was sent.
+
+### Performance analysis
+
+Sometimes the noise is so large that even when $x[m]=-a$ was sent, the received signal $y[m]$ is positive. In this case, the detector would incorrectly conclude that $+a$ was sent. Now we analyze the chance of such an error happenning.
+
+Since the signaling scheme of $x[m]=\pm a$ and the noise are both symmetric, the total probability of error is the same as the probability that the detector mistakens $-a$ for $+a$. So we can focus on this case. 
+
+$$
+  \begin{aligned} 
+    p_e = \mathbf{P}(\mathfrak{R}(y[m]) > 0 \vert x[m]=-a) = \mathbf{P}\left( \frac{\mathfrak{R}(y[m])+a}{\sqrt{N_0/2}} > \frac{a}{\sqrt{N_0/2}} \right) = Q\left( \frac{a}{\sqrt{N_0/2}} \right),
+  \end{aligned}
+$$
+
+where we use the fact that $\mathfrak{R}(y[m]) \sim \mathcal{N}(-a, N_0/2)$ when $-a$ was sent, and convert $\mathfrak{R}(y[m])$ to a standard Gaussian random variable $\frac{\mathfrak{R}(y[m])+a}{\sqrt{N_0/2}}$.
+
+Now we introduce the important concept of **signal-to-noise ratio (SNR)**, defined as 
+
+$$
+\textsf{SNR} = \frac{\text{the average received signal energy per symbol}}{\text{noise energy per symbol}}.
+$$
+
+In BPSK, the SNR is $\frac{a^2}{N_0}$. Therefore, the error probability can be rewritten as
+
+$$
+  p_e = Q\left( \sqrt{2 \textsf{SNR}} \right).
+$$
+
+Since the Q function is upper bounded by $Q(x) < e^{-x^2/2}$, we have
+
+$$
+  p_e < e^{-\textsf{SNR}}.
+$$
+
+Therefore, **in the AWGN channel, the error rate decays exponentially with the SNR.**
+
+## BPSK fails in the fading channel
+
+How about the fading channel? In a Rayleigh fading channel, we have 
+
+\begin{align}
+  y[m] = h[m] x[m] + w[m],
+\end{align}
+where $h[m] \sim \mathcal{CN}(0,1)$.
+
+When $x[m]=+a$ was sent, the receive signal $y[m] \sim \mathcal{CN}(0, a^2 + N_0)$, and when $x[m]=-a$ was sent, the receive signal $y[m] \sim \mathcal{CN}(0, a^2 + N_0)$. In other words, *the received signal follows the same distribution no matter which symbol was sent!* Therefore, we actually cannot tell which signal was sent from the receive signal. The root cause is that the channel can rotate the phase of the received signal uniformly randomly.
+
+The failure of BPSK in the fading channel underscores the challenges when the channel is wireless.
