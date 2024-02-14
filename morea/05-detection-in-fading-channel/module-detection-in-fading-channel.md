@@ -2,7 +2,7 @@
 title: "Detection in a Fading Channel"
 published: true
 morea_coming_soon: false
-morea_id: module-in-detection-fading-channel
+morea_id: module-detection-in-fading-channel
 morea_prerequisites:
 morea_outcomes:
   - outcome-05-detection-in-fading-channel
@@ -19,7 +19,7 @@ morea_assessments:
 morea_type: module
 morea_icon_url: /morea/05-detection-in-fading-channel/05-module-icon-detection-2.webp
 morea_start_date: "2024-02-05"
-morea_end_date: "2024-02-07"
+morea_end_date: "2024-02-11"
 morea_labels:
 morea_sort_order: 5
 ---

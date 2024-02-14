@@ -62,3 +62,12 @@ The PDF of a circularly symmetric Gaussian random variable $\mathcal{CN}(0,\sigm
 \begin{align}
   f(x) = \frac{1}{\pi \sigma^2} e^{-\frac{\vert x \vert^2}{\sigma^2}}.
 \end{align}
+
+## Complex Gaussian random vectors
+Now we consider a $n$-dimensional complex Gaussian random vector $\mathbf{x} \in \mathbb{C}^n$. We focus on the case of circularly symmetric Gaussian random vector $\mathbf{x}$, namely $e^{j\theta}\mathbf{x}$ has the same distribution as $\mathbf{x}$ for any $\theta$.
+
+A circularly symmetric Gaussian random vector $\mathbf{x}$ has zero mean $\boldsymbol{\mu} = 0$ and variance $\mathbf{K} = \mathbb{E}\left[ \mathbf{x} \mathbf{x}^H \right]$. Its PDF is given by
+
+\begin{align}
+  f(\mathbf{x}) = \frac{1}{\pi^n \text{det}\mathbf{K}} e^{- \mathbf{x}^H \mathbf{K}^{-1} \mathbf{x} }.
+\end{align}
