@@ -6,7 +6,7 @@ morea_summary: "Overview"
 # morea_url: https://github.com/airbnb/javascript
 morea_type: reading
 morea_labels:
-morea_sort_order: 60
+morea_sort_order: 70
 ---
 
 <div class="alert alert-success" role="alert" markdown="1">

@@ -3,7 +3,7 @@ title: "Time diversity"
 published: true
 morea_id: outcome-07-antenna-diversity
 morea_type: outcome
-morea_sort_order: 60
+morea_sort_order: 70
 ---
 
   * You understand what is antenna/spatial diversity.
