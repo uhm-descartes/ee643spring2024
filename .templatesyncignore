@@ -1,0 +1,5 @@
+# Do not update these files/directories
+_config.yml
+_config.yaml
+morea
+schedule/schedule-info.js
