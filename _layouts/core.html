@@ -45,9 +45,7 @@
 </head>
 <body>
 
-<div class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark" style>
-<!-- <div class="navbar navbar-expand-lg {{site.morea_theme_navbar_bg}} fixed-top"> -->
-<!-- <div class="navbar navbar-expand-lg bg-primary fixed-top"> -->
+<div class="navbar navbar-expand-lg fixed-top {{site.morea_theme_navbar_bg}}">
   <div class="container">
     <a class="navbar-brand" href="{{ site.baseurl }}/index.html"> {{ site.name }} </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,8 +83,7 @@
 <script src="{{ site.baseurl }}/js/scrollIfAnchor.js"></script>
 -->
 
-<!--<footer class="footer footer-background" style="padding-top: 2em; padding-bottom: 2em; margin-top: 2em"> -->
-<footer class="footer footer-background">
+<footer class="footer footer-background" style="padding-top: 1em; padding-bottom: 1em">
   <div class="container text-center">
     {% if site.morea_footer_page %}
     {{ site.morea_footer_page.content | markdownify }}
@@ -122,25 +119,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 {% if site.mathjax %}
-<!--
 <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
-</script>
--->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-  window.MathJax = {
-    loader: { load: ['[tex]/empheq'] },
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      tags: 'ams', // This enables AMS-style numbering
-      // Other configuration options...
-      packages: {'[+]': ['empheq']},
-    },
-    // Other global configuration options...
-  };
 </script>
 {% endif %}
 

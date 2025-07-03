@@ -1,7 +1,7 @@
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
-# documentation.
+# documentation. 
 
 # Workflow to register the DESCARTES Course with the UMH DESCARTES Course Sites page.
 name: Register Descartes Course Site
@@ -25,44 +25,59 @@ concurrency:
   group: "descartes"
   cancel-in-progress: false
 
+# Common Environment Variables for all Steps
+env:
+  SOURCE_REPOSITORY: uhm-descartes/morea
+
 jobs:
   # Deployment job
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Get Deployment URL
-        id: deployment
-        uses: actions/configure-pages@v4
 
+    steps:
       - name: Checkout current repository
         uses: actions/checkout@v4
+        if: github.repository != env.SOURCE_REPOSITORY
         with:
           path: current-repo
       
+      - name: Get Deployment URL
+        id: deployment
+        uses: actions/configure-pages@v5
+        if: github.repository != env.SOURCE_REPOSITORY
+        continue-on-error: true
+        with:
+          enablement: true
+
       - name: Checkout Descartes Course repository
         uses: actions/checkout@v4
+        if: github.repository != env.SOURCE_REPOSITORY
         with:
           repository: uhm-descartes/descartes-modules
           path: descartes-modules
           token: ${{ secrets.DESCARTES_TOKEN }}
 
       - name: Update CSV and Create Pull Request
+        if: github.repository != env.SOURCE_REPOSITORY
         env:
           GH_TOKEN: ${{ secrets.DESCARTES_TOKEN }}
           COURSE_URL: ${{ steps.deployment.outputs.base_url }}
           COURSE_REPOSITORY: ${{ github.repository }}
+          CURRENT_REPO_DIR: "current-repo"
           DESCARTES_COURSES_DIR: "descartes-modules"
           DESCARTES_COURSES_CSV: "course-sites/descartes-courses.csv"
         run: |
+          set -e  # Exit immediately if any command fails
+
           echo "Extract course name, course full name, description, and prerequisites from _config.yml"
-          if [ -f "current-repo/_config.yml" ]; then
-            COURSE_NAME=$(grep "^morea_course:" current-repo/_config.yml | sed 's/morea_course: *//' | tr -d '"' | tr '[:lower:]' '[:upper:]')
+          if [ -f "$CURRENT_REPO_DIR/_config.yml" ]; then
+            COURSE_NAME=$(grep "^morea_course:" "$CURRENT_REPO_DIR/_config.yml" | sed 's/morea_course: *//' | tr -d '"' | tr '[:lower:]' '[:upper:]')
             echo "Found course name: $COURSE_NAME"
-            COURSE_FULL_NAME=$(grep "^morea_course_name:" current-repo/_config.yml | sed 's/morea_course_name: *//' | tr -d '"')
+            COURSE_FULL_NAME=$(grep "^morea_course_name:" "$CURRENT_REPO_DIR/_config.yml" | sed 's/morea_course_name: *//' | tr -d '"')
             echo "Found course full name: $COURSE_FULL_NAME"
-            COURSE_DESCRIPTION=$(grep "^morea_description:" current-repo/_config.yml | sed 's/morea_description: *//' | tr -d '"')
+            COURSE_DESCRIPTION=$(grep "^morea_description:" "$CURRENT_REPO_DIR/_config.yml" | sed 's/morea_description: *//' | tr -d '"')
             echo "Found course description: $COURSE_DESCRIPTION"
-            COURSE_PREREQUISITES=$(grep "^morea_prerequisites:" current-repo/_config.yml | sed 's/morea_prerequisites: *//' | tr -d '"')
+            COURSE_PREREQUISITES=$(grep "^morea_prerequisites:" "$CURRENT_REPO_DIR/_config.yml" | sed 's/morea_prerequisites: *//' | tr -d '"')
             echo "Found course prerequisites: $COURSE_PREREQUISITES"
           else
             echo "ERROR: _config.yml not found!"
@@ -70,8 +85,9 @@ jobs:
           fi
 
           if [ -z "$COURSE_URL" ]; then
-            echo "Pages deployment not configured"
-            exit 1
+            echo "Constructing fallback URL"
+            COURSE_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+            echo "Using fallback URL: $COURSE_URL"
           fi
           if [ -z "$COURSE_NAME" ]; then
             echo "No MOREA Course Name defined in _config.yaml"
@@ -80,11 +96,6 @@ jobs:
 
           cd $DESCARTES_COURSES_DIR
           
-          echo "Configure git"
-          git config --local user.name "UHM DESCARTES Action Bot"
-          git config --local user.email "uhmnrt@hawaii.edu"
-          git config --local user.password "$GH_TOKEN"
-          
           echo "Check if the exact entry already exists (with full name and description)"
           EXPECTED_ENTRY="\"$COURSE_NAME\",\"$COURSE_URL\",\"$COURSE_FULL_NAME\",\"$COURSE_DESCRIPTION\",\"$COURSE_PREREQUISITES\",\"$COURSE_REPOSITORY\""
           if grep -Fxq "$EXPECTED_ENTRY" "$DESCARTES_COURSES_CSV"; then
@@ -92,28 +103,32 @@ jobs:
             exit 0
           fi
           
-          echo "Check if an entry with same course name and URL exists (but potentially different full name or description or prerequisites or repository)"
-          PARTIAL_ENTRY="$COURSE_NAME,$COURSE_URL"
-          if grep -q "^$PARTIAL_ENTRY," "$DESCARTES_COURSES_CSV"; then
-            echo "Found entry with same course and URL but different full name/description/prerequisites/repository. Will update entry."
-            NEEDS_UPDATE=true
-          elif grep -q "^$COURSE_NAME," "$DESCARTES_COURSES_CSV"; then
-            echo "Found entry with same course name but different URL/full name/description/prerequisites/repository. Will update entry."
+          echo "Check if an entry with same course name exists (but potentially different full name or description or prerequisites or repository)"
+          PARTIAL_ENTRY="\"$COURSE_NAME\","
+          if grep -q "^$PARTIAL_ENTRY" "$DESCARTES_COURSES_CSV"; then
+            echo "Found entry with same course name. Will update entry."
             NEEDS_UPDATE=true
           else
             echo "No existing entry found. Will add new entry."
-            NEEDS_UPDATE=true
+            NEEDS_INSERT=true
           fi
           
-          echo "Create a new branch"
-          BRANCH_NAME="update-${COURSE_NAME// /}-$(date +%s)"
-          git checkout -b "$BRANCH_NAME"
-          
-          if grep -q "^$COURSE_NAME," "$DESCARTES_COURSES_CSV"; then
+          if [ -z "$NEEDS_UPDATE" ] && [ -z "$NEEDS_INSERT" ]; then
+            echo "No update or insert needed. Exiting."
+            exit 0
+          fi
+                    
+          echo "Configure git"
+          git config --local user.name "UHM DESCARTES Action Bot"
+          git config --local user.email "uhmnrt@hawaii.edu"
+          git config --local user.password "$GH_TOKEN"
+
+
+          if [ ! -z "$NEEDS_UPDATE" ]; then
             echo "Update existing entry with full name and description"
-            sed -i.bak "s|^$COURSE_NAME,.*|$EXPECTED_ENTRY|g" "$DESCARTES_COURSES_CSV"
+            sed -i.bak "s|^$PARTIAL_ENTRY.*|$EXPECTED_ENTRY|g" "$DESCARTES_COURSES_CSV"
             echo "Updated existing $COURSE_NAME entry with: $COURSE_URL, full name: $COURSE_FULL_NAME, and description: $COURSE_DESCRIPTION"
-          else
+          elif [ ! -z "$NEEDS_INSERT" ]; then
             echo "Append new entry with full name and description"
             echo -e "\n$EXPECTED_ENTRY" >> "$DESCARTES_COURSES_CSV"
             sed -i '/^\s*$/d' "$DESCARTES_COURSES_CSV"
@@ -125,15 +140,50 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
+
+          echo "Create a new branch"
+          BRANCH_NAME="update-${COURSE_NAME// /}-$(date +%s)"
+          git checkout -b "$BRANCH_NAME" || {
+            echo "Failed to create branch $BRANCH_NAME"
+            exit 1
+          }
           
           echo "Commit and push changes"
-          git add "$DESCARTES_COURSES_CSV"
-          git commit -m "Update $COURSE_NAME deploy URL, full name, and description"
-          git push origin "$BRANCH_NAME"
+          git add "$DESCARTES_COURSES_CSV" || {
+            echo "Failed to add $DESCARTES_COURSES_CSV"
+            git branch --delete "$BRANCH_NAME" || {
+              echo "Failed to delete branch $BRANCH_NAME"
+              exit 3
+            }
+            exit 1
+          }
+          git commit -m "Update $COURSE_NAME deploy URL, full name, and description" || {
+            echo "Failed to commit changes"
+            git branch --delete "$BRANCH_NAME" || {
+              echo "Failed to delete branch $BRANCH_NAME"
+              exit 3
+            }
+            exit 1
+          }
+          git push origin "$BRANCH_NAME" || {
+            echo "Failed to push branch $BRANCH_NAME"
+            git branch --delete "$BRANCH_NAME" || {
+              echo "Failed to delete branch $BRANCH_NAME"
+              exit 3
+            }
+            exit 1
+          }
           
           echo "Create pull request using GitHub CLI"
           gh pr create \
             --title "Update $COURSE_NAME deploy URL, full name, and description" \
             --body "Automatically generated PR to update $COURSE_NAME course site URL to: $COURSE_URL with full name: $COURSE_FULL_NAME and description: $COURSE_DESCRIPTION" \
             --head "$BRANCH_NAME" \
-            --base main
+            --base main || {
+            echo "Failed to create pull request"
+            git branch --delete "$BRANCH_NAME" || {
+              echo "Failed to delete branch $BRANCH_NAME"
+              exit 3
+            }
+            exit 2
+          }

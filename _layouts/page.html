@@ -1,114 +1,13 @@
 ---
 layout: core
 ---
+{% include breadcrumb-4.html %}
 
 {% if page.topdiv == 'container' %}
 <div class="container">
-  <div class="row">
-      <!-- Main Content -->
-      <div class="col-md-9">
-        {% include breadcrumb-4.html %}
-          {{ content }}
-      </div>
-
-      <!-- ToC Sidebar -->
-      <div class="col-md-3 d-none d-md-block">
-          <div class="toc-sidebar">
-            <div id="toc-container" class="toc__left-border"></div>
-          </div>
-      </div>
-  </div>
+  {{ content }}
 </div>
 {% else %}
 {{ content }}
 {% endif %}
 
-<script>
-
-  // Generate the table of content including sections (h2) and subsections (h3)
-  document.addEventListener('DOMContentLoaded', function() {
-    const tocContainer = document.getElementById('toc-container');
-    const h2Headings = document.querySelectorAll('.col-md-9 h2');
-    const h2List = document.createElement('ul');
-    
-    h2Headings.forEach(h2 => {
-        const h2Item = document.createElement('li');
-        const h2Link = document.createElement('a');
-        h2Link.href = '#' + h2.id;
-        h2Link.textContent = h2.textContent;
-        h2Item.appendChild(h2Link);
-
-        // Create a sublist for h3 headings under this h2
-        const h3List = document.createElement('ul');
-        
-        // Get all next siblings until the next h2 or end of container
-        let nextElem = h2.nextElementSibling;
-        while (nextElem && nextElem.tagName !== 'H2') {
-            if (nextElem.tagName === 'H3') {
-                const h3Item = document.createElement('li');
-                const h3Link = document.createElement('a');
-                h3Link.href = '#' + nextElem.id;
-                h3Link.textContent = nextElem.textContent;
-                h3Item.appendChild(h3Link);
-                h3List.appendChild(h3Item);
-            }
-            nextElem = nextElem.nextElementSibling;
-        }
-
-        if (h3List.hasChildNodes()) {
-            h2Item.appendChild(h3List);
-        }
-        
-        h2List.appendChild(h2Item);
-    });
-
-    tocContainer.appendChild(h2List);
-  });
-
-  // Assign the active link based on the scroll position
-  document.addEventListener('scroll', function() {
-    const headings = document.querySelectorAll('.col-md-9 h2, .col-md-9 h3');
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    const halfScreenHeight = window.innerHeight / 2;
-
-    // First, remove 'active' class from all ToC links
-    document.querySelectorAll('#toc-container a').forEach(a => {
-        a.classList.remove('active');
-    });
-
-    // Then, find and highlight the active link
-    foundActive = false
-
-    // Check all the sections/subsections except the last one
-    for (let i = 0; i < headings.length-1; i++) {
-        const heading = headings[i];
-        const headingTop = heading.offsetTop;
-        const headingHeight = heading.offsetHeight;
-        const nextHeadingTop = headings[i+1].offsetTop;
-        const nextHeadingHeight = headings[i+1].offsetHeight;
-
-        // console.log('Heading:', heading.id, 'Top:', headingTop, 'Height:', headingHeight, 'Scroll:', scrollPosition, 'Half screen height:', halfScreenHeight); // Debugging
-
-        // Check if the scroll position is within the current heading
-        if (scrollPosition + halfScreenHeight >= headingTop - headingHeight && (scrollPosition < headingTop - headingHeight || scrollPosition + halfScreenHeight < nextHeadingTop - nextHeadingHeight)) {
-            // console.log('Found active link', heading.id); // Debugging
-            const activeLink = document.querySelector(`#toc-container a[href="#${heading.id}"]`);
-            activeLink.classList.add('active');
-            foundActive = true;
-            break; // Stop the loop once the active link is found
-        }
-    }
-    // Check the last section/subsection under a different rule
-    if (foundActive == false) {
-        lastHeading = headings[headings.length-1];
-        const headingTop = lastHeading.offsetTop;
-        const headingHeight = lastHeading.offsetHeight;
-        if (scrollPosition + halfScreenHeight >= headingTop - headingHeight) {
-            const activeLink = document.querySelector(`#toc-container a[href="#${lastHeading.id}"]`);
-            activeLink.classList.add('active');
-        }
-    }
-  });
-
-</script>
-  
