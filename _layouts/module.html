@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 {% include breadcrumb-3.html %}
 
 <div class="container">
@@ -30,7 +29,7 @@ layout: default
 {% unless page.morea_page.morea_outcomes.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-    <h2 style="margin-top:auto">Learning Outcomes</h2>
+    <h2>Learning Outcomes</h2>
 
     {% for page_id in page.morea_page.morea_outcomes %}
       {% assign outcome = site.morea_page_table[page_id] %}
@@ -52,12 +51,12 @@ layout: default
 {% unless page.morea_page.morea_readings.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-  <h2 class="text-primary" style="margin-top:auto">Readings</h2>
+  <h2>Readings</h2>
 
     <div class="row">
       {% for page_id in page.morea_page.morea_readings %}
         {% assign reading = site.morea_page_table[page_id] %}
-        {% include entity-card.html type="reading" url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
+        {% include entity-card.html url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
       {% endfor %}
     </div>
   </div>
@@ -67,11 +66,11 @@ layout: default
 {% unless page.morea_page.morea_experiences.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-  <h2 class="text-success" style="margin-top:auto">Experiential Learning</h2>
+  <h2>Experiential Learning</h2>
     <div class="row">
       {% for page_id in page.morea_page.morea_experiences %}
         {% assign experience = site.morea_page_table[page_id] %}
-        {% include entity-card.html type="experience" url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
+        {% include entity-card.html url=experience.morea_url title=experience.title summary=experience.morea_summary labels=experience.morea_labels %}
       {% endfor %}
     </div>
   </div>
@@ -81,11 +80,11 @@ layout: default
 {% unless page.morea_page.morea_assessments.size == 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-    <h2 class="text-danger" style="margin-top:auto">Assessments</h2>
+    <h2>Assessments</h2>
     <div class="row">
     {% for page_id in page.morea_page.morea_assessments %}
       {% assign assessment = site.morea_page_table[page_id] %}
-    {% include entity-card.html type="assessment" url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
+    {% include entity-card.html url=assessment.morea_url title=assessment.title summary=assessment.morea_summary labels=assessment.morea_labels outcomes=assessment.morea_outcomes_assessed_titles %}
     {% endfor %}
     </div>
   </div>

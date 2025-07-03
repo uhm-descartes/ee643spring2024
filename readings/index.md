@@ -18,11 +18,11 @@ title: Readings
 {% if module.morea_coming_soon != true and module.morea_readings.size > 0 %}
 <div class="{% cycle 'section-background-1', 'section-background-2' %}">
   <div class="container">
-    <h2 style="margin-top:auto"><small>Module:</small> <a href="{{ site.baseurl }}{{ module.module_page.url }}">{{ module.title }}</a></h2>
+    <h2><small>Module:</small> <a href="{{ site.baseurl }}{{ module.module_page.url }}">{{ module.title }}</a></h2>
     <div class="row">
     {% for page_id in module.morea_readings %}
       {% assign reading = site.morea_page_table[page_id] %}
-      {% include entity-card.html type="reading" url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
+      {% include entity-card.html url=reading.morea_url title=reading.title summary=reading.morea_summary labels=reading.morea_labels %}
     {% endfor %}
     </div>
   </div>
