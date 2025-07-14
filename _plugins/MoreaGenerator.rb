@@ -768,7 +768,7 @@ module Morea
       json = "modules: ["
       site.config['morea_module_pages'].each do |mod|
         mod_id = mod.data['morea_id']
-        json += "\n  { course: #{site.config['morea_course'].inspect}, title: #{mod.data['title'].inspect}, moduleUrl: #{get_module_url_from_id(mod_id, site).inspect}, sort_order: #{mod.data['morea_sort_order']}, description: #{mod.data['morea_summary'].inspect} },"
+        json += "\n  { course: #{site.config['morea_course'].inspect}, title: #{mod.data['title'].inspect}, moduleUrl: #{get_module_url_from_id(mod_id, site).inspect}, sort_order: #{mod.data['morea_sort_order']}, description: #{mod.data['morea_summary'].inspect}, descartesModule: #{mod.data['descartes_module']== true}},"
       end
       #strip trailing comma
       if (json.end_with?(","))
