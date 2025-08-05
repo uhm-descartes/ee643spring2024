@@ -1,7 +1,9 @@
 # Keep IntelliJ files out of github to reduce potential conflicts when others import.
-
 .idea
 core.iml
+# Ignore local build artifacts
 _site
 .jekyll-cache
+Gemfile.lock
+# Ignore platform specific files
 .DS_Store
