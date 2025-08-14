@@ -8,8 +8,12 @@
 name: Synchronize with Template
 
 on:
+  # Runs on schedule: 1:00 AM HAST on Monday
   schedule:
-    - cron:  "0 1 * * MON"
+    - cron:  "0 11 * * MON"
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
   # Allow this workflow to be manually triggered
   workflow_dispatch:
 
